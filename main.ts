@@ -1,5 +1,5 @@
 import { App, Editor, MarkdownView, Modal, Notice, Plugin, PluginSettingTab, Setting } from 'obsidian';
-
+import * as Grammarly from "@grammarly/editor-sdk";
 // Remember to rename these classes and interfaces!
 
 interface MyPluginSettings {
@@ -15,6 +15,7 @@ export default class MyPlugin extends Plugin {
 
 	async onload() {
 		await this.loadSettings();
+		const grammarly = await Grammarly.init("client_Ng57US4EZJ9TrieXwaau6z");
 
 		// This creates an icon in the left ribbon.
 		const ribbonIconEl = this.addRibbonIcon('dice', 'Sample Plugin', (evt: MouseEvent) => {
@@ -120,7 +121,7 @@ class SampleSettingTab extends PluginSettingTab {
 
 		containerEl.empty();
 
-		containerEl.createEl('h2', {text: 'Settings for my awesome plugin.'});
+		containerEl.createEl('h2', {text: 'Settings for Obsidian-Grammarly.'});
 
 		new Setting(containerEl)
 			.setName('Setting #1')
